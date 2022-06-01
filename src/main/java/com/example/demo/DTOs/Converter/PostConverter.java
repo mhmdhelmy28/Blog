@@ -28,6 +28,7 @@ public class PostConverter {
         postDTO.setContent(post.getContent());
         postDTO.setTitle(post.getTitle());
         postDTO.setCreationDate(post.getCreationDate());
+        postDTO.setComments(post.getComments());
         return postDTO;
     }
 

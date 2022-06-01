@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin("*")
 public class UserController {
-    private UserService userService;
-    private UserConverter userConverter;
+    private final UserService userService;
+    private final UserConverter userConverter;
     @Autowired
     public UserController(UserService userService, UserConverter userConverter){
         this.userConverter = userConverter;
         this.userService = userService;
     }
 
-    @PostMapping(value = "/user")
+    @PostMapping(value = "/users")
     public void addUser(@RequestBody UserDTO userDTO){
         User user = userConverter.dtoToEntity(userDTO);
         userService.addUser(user);
     }
 
-    @GetMapping(value = "/user/{userId}")
+    @GetMapping(value = "/users/{userId}")
     public UserDTO getUser(@PathVariable String userId){
        return userConverter.entityToDTO(userService.getUser(userId));
     }

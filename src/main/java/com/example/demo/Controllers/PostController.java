@@ -12,26 +12,26 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 public class PostController {
-    private PostService postService;
-    private PostConverter postConverter;
+    private final PostService postService;
+    private final PostConverter postConverter;
     @Autowired
     public PostController(PostService postService, PostConverter postConverter){
         this.postConverter = postConverter;
         this.postService = postService;
     }
 
-    @PostMapping(value = "/users/{userId}/posts/post")
+    @PostMapping(value = "/users/{userId}/posts")
     public void addPost(@PathVariable String userId, @RequestBody PostDTO postDTO){
         Post post = postConverter.DtoToEntity(postDTO);
         postService.addPost(post,userId);
     }
 
-    @GetMapping(value = "/posts/{postId}/get")
+    @GetMapping(value = "/posts/{postId}")
     public PostDTO getPost(@PathVariable int postId){
        return postConverter.entityToDTO(postService.getPost(postId));
     }
 
-    @GetMapping(value = "posts/get")
+    @GetMapping(value = "posts")
     public List<PostDTO> getAllPosts(){
         return postConverter.entitiesToDTOs(postService.getFeaturedPosts());
     }

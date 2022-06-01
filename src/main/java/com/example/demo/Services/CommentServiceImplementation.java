@@ -14,8 +14,8 @@ import java.util.List;
 
 @Service
 public class CommentServiceImplementation implements CommentService{
-    final private CommentRepository commentRepository;
-    final private PostRepository postRepository;
+    private final CommentRepository commentRepository;
+    private final PostRepository postRepository;
     @Autowired
     public CommentServiceImplementation(CommentRepository commentRepository, PostRepository postRepository){
         this.commentRepository = commentRepository;
@@ -33,6 +33,6 @@ public class CommentServiceImplementation implements CommentService{
     @Override
     public List<Comment> getComments(int postId) {
         Post posts = postRepository.findById(postId).get();
-        return (List<Comment>) posts.getComments();
+        return posts.getComments();
     }
 }

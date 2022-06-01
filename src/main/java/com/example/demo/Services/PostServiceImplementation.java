@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 public class PostServiceImplementation implements PostService{
 
-    final private PostRepository postRepository;
-    final private UserRepository userRepository;
+    private final PostRepository postRepository;
+    private final UserRepository userRepository;
     @Autowired
     public PostServiceImplementation(PostRepository postRepository, UserRepository userRepository){
         this.postRepository = postRepository;
